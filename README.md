@@ -1,4 +1,4 @@
-# Soñé
+# Sone
 
 ### A little room for your dreams.
 
@@ -8,7 +8,7 @@ A free, bilingual place to explore the strange things you dream about. Describe 
 
 Built by [Gil Silva](https://github.com/gilxsilva).
 
-![Soñé: a warm, illustrated dream exploration website](docs/preview.png)
+![Sone: a warm, illustrated dream exploration website](docs/preview.png)
 
 ## The experience
 
@@ -17,7 +17,8 @@ Built by [Gil Silva](https://github.com/gilxsilva).
 - **English and Spanish.** Switch the whole experience, including readings, examples, cards, and share text. Your draft stays put when you change language.
 - **32 illustrated symbols.** Browse by category or search in either language, with accent-insensitive matching.
 - **A feeling-first reading.** Add an optional emotion, or let the words guide a lightweight symbolic interpretation.
-- **Two ways to look at a symbol.** Reflective questions and folk stories appear separately, with links for further reading on researched additions.
+- **Two ways to look at a symbol.** Original reflections and sourced symbolic associations appear separately. Every card names its source or identifies an original Sone metaphor.
+- **Sources & approach.** An About dreams page separates sleep research, dictionary symbolism, and original writing, with a reference directory for all 32 symbols.
 - **Copy, then share.** Preview the text and copy it wherever you like. The original dream is excluded unless you choose to include it.
 - **No sign-up. No dream saving.** Nothing to install, no subscription, no interpretation API.
 
@@ -59,7 +60,7 @@ Dreams and readings live only in the current page's memory and clear on reload. 
 
 ### Content and its limits
 
-Dream meanings are possibilities, not established facts. Folk stories are cultural material, not predictions. The questions are editorial prompts, not psychological diagnoses. Keep what connects and leave the rest.
+Dream meanings are possibilities, not established facts. Dictionary symbolism is interpretive material, not scientific evidence. The questions are editorial prompts, not psychological diagnoses. Keep what connects and leave the rest.
 
 See [sources and editorial approach](docs/sources.md) for the collection's references and attribution notes.
 
@@ -69,6 +70,9 @@ See [sources and editorial approach](docs/sources.md) for the collection's refer
 src/
   main.tsx          Views, interactions, and original SVG illustrations
   dictionary.ts     Symbols, keyword matching, readings, and sharing
+  sources.ts        Per-symbol provenance and bilingual association summaries
+  AboutDreams.tsx   Research, method, and complete source directory
+  Provenance.tsx    Visible source attribution in each reading
   symbols-es.ts     Spanish symbol descriptions and questions
   i18n.tsx          Language state and preference
   translations.ts   Spanish interface copy

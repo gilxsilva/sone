@@ -1,3 +1,4 @@
+import { symbolSources, type SymbolSource } from './sources';
 import { spanishSymbols } from './symbols-es';
 export type Language = 'en' | 'es';
 export type SymbolId =
@@ -45,9 +46,9 @@ export type DreamSymbol = {
   question: string;
   color: string;
   theme: string;
-  source?: { title: string; url: string };
+  source: SymbolSource;
 };
-export const dictionary: DreamSymbol[] = [
+const entries: (Omit<DreamSymbol, 'source'> & { source?: { title: string; url: string } })[] = [
   {
     id: 'moon',
     name: 'The moon',
@@ -422,7 +423,7 @@ export const dictionary: DreamSymbol[] = [
       'Some stories connect coins with fortune; others say dream riches bring expenses. These contradictory sayings offer no financial insight.',
     reflection:
       'Money might be a useful starting point for thoughts about security, resources, or what you value beyond money.',
-    question: 'In this dream, what did having enough—or not enough—feel like?',
+    question: 'In this dream, what did having enough (or not enough) feel like?',
     color: '#e7c268',
     theme: 'security and what you value',
   },
@@ -827,8 +828,15 @@ export const dictionary: DreamSymbol[] = [
     },
   },
 ];
+export const dictionary: DreamSymbol[] = entries.map((s) => ({
+  ...s,
+  source: symbolSources[s.id],
+  folklore: symbolSources[s.id].association.en,
+}));
 export function getDictionary(lang: Language = 'en'): DreamSymbol[] {
-  return lang === 'es' ? dictionary.map((s) => ({ ...s, ...spanishSymbols[s.id] })) : dictionary;
+  return lang === 'es'
+    ? dictionary.map((s) => ({ ...s, ...spanishSymbols[s.id], folklore: s.source.association.es }))
+    : dictionary;
 }
 export const normalize = (s: string) =>
   s
@@ -953,7 +961,7 @@ export function shareReading(
 ) {
   if (lang === 'es')
     return [
-      'Mi sueño, explorado con Soñé',
+      'Mi sueño, explorado con Sone',
       ...(includeDream ? ['', `El sueño: ${dream}`] : []),
       '',
       reading.title,
@@ -970,10 +978,11 @@ export function shareReading(
       reading.question,
       '',
       'Una lectura simbólica para reflexionar. No es una predicción ni un diagnóstico.',
-      'Soñé — un espacio para tus sueños.',
+      'Sone. Un espacio para tus sueños.',
+      'Reflexión original de Sone. Fuentes y enfoque: https://sone-tau.vercel.app/?lang=es#about-dreams',
     ].join('\n');
   return [
-    'My dream, explored with Soñé',
+    'My dream, explored with Sone',
     ...(includeDream ? ['', `The dream: ${dream}`] : []),
     '',
     reading.title,
@@ -990,7 +999,8 @@ export function shareReading(
     reading.question,
     '',
     'A symbolic reading for reflection. Not a prediction or diagnosis.',
-    'Soñé — a little room for your dreams.',
+    'Sone. A little room for your dreams.',
+    'Original Sone reflection. Sources and approach: https://sone-tau.vercel.app/?lang=en#about-dreams',
   ].join('\n');
 }
 

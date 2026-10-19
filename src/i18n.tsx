@@ -31,10 +31,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
           ? 'Explora tus sueños con un poco de folclore y otra perspectiva. Gratis, sin registro y sin guardar tus sueños.'
           : 'Explore your dreams with a little folklore and a fresh perspective. Free, no sign-up, nothing saved.',
       );
-    document.title =
-      lang === 'es'
-        ? 'Soñé — Un espacio para tus sueños.'
-        : 'Soñé — A little room for your dreams.';
+    document.title = 'Sone';
     try {
       localStorage.setItem('sone-language', lang);
     } catch {

@@ -1,4 +1,19 @@
 export const es: Record<string, string> = {
+  'Each symbol names the dictionary entry behind its symbolic association, or labels it as an original Sone metaphor. Reflections and questions are our own writing. The About dreams page separates these interpretations from sleep research.':
+    'Cada símbolo indica la entrada del diccionario en que se basa su asociación o se identifica como una metáfora original de Sone. Las reflexiones y preguntas son textos nuestros. Sobre los sueños distingue estas interpretaciones de la investigación sobre el sueño.',
+
+  Source: 'Fuente',
+  'Original Sone reflection': 'Reflexión original de Sone',
+  'About dreams': 'Sobre los sueños',
+  'Sources & approach ↗': 'Fuentes y enfoque ↗',
+  'Symbolic context': 'Contexto simbólico',
+  'SYMBOLISM, NOT SCIENCE': 'SIMBOLISMO, NO CIENCIA',
+  'ORIGINAL SONE REFLECTION': 'REFLEXIÓN ORIGINAL DE SONE',
+  'Where these associations come from': 'De dónde vienen estas asociaciones',
+  'Each card names its source. Dictionary associations are symbolic interpretations; our reflections and questions are original writing. Neither is a scientifically validated meaning.':
+    'Cada tarjeta indica su fuente. Las asociaciones del diccionario son interpretaciones simbólicas; las reflexiones y preguntas son textos originales nuestros. Ninguna es un significado validado científicamente.',
+  'Explore the research and our sources ↗': 'Explora la investigación y nuestras fuentes ↗',
+
   Explore: 'Explorar',
   'I was flying': 'Estaba volando',
   'I was flying over the ocean at sunset. I could see my childhood house below me, but I felt peaceful and did not want to land.':
@@ -24,7 +39,7 @@ export const es: Record<string, string> = {
   'Explore my dream': 'Explorar mi sueño',
   'Just here, just now. Your dream isn’t saved.': 'Aquí y ahora. Tu sueño no se guarda.',
   'Skip to content': 'Ir al contenido',
-  'Soñé home': 'Inicio de Soñé',
+  'Sone home': 'Inicio de Sone',
   'Main navigation': 'Navegación principal',
   'Dream symbols': 'Símbolos de sueños',
   'The idea': 'La idea',
@@ -50,8 +65,8 @@ export const es: Record<string, string> = {
   'Big feelings.': 'Emociones grandes.',
   'Strange stories.': 'Historias raras.',
   'All welcome.': 'Todas caben aquí.',
-  'Soñé means “I dreamed.” It started with the way dreams get talked about around a kitchen table: a strange detail, an old family story, a different point of view.':
-    'Soñé nace de esas conversaciones alrededor de la mesa: un detalle extraño, una historia de familia, una forma distinta de ver lo que pasó mientras dormíamos.',
+  'Sone takes its name from the Spanish soñé, “I dreamed.” It started with the way dreams get talked about around a kitchen table: a strange detail, an old family story, a different point of view.':
+    'Sone toma su nombre de “soñé” y nace de esas conversaciones alrededor de la mesa: un detalle extraño, una historia de familia, una forma distinta de ver lo que pasó mientras dormíamos.',
   'That’s the spirit here. Tell us what you remember. Explore the symbols and see what connects with your own life. You get the last word on what it means.':
     'Ese es el espíritu de este lugar. Cuenta lo que recuerdas, explora los símbolos y mira qué conecta con tu vida. La última palabra sobre su significado es tuya.',
   'Pull up a chair': 'Acércate a la mesa',
@@ -70,12 +85,12 @@ export const es: Record<string, string> = {
   'A FEW THINGS BEFORE YOU WANDER OFF': 'UNAS COSAS ANTES DE SEGUIR TU CAMINO',
   'Good questions.': 'Buenas preguntas.',
   'Can you really tell me what my dream means?': '¿Pueden decirme qué significa mi sueño?',
-  'We can offer a starting point. Soñé matches words in your dream to a small, hand-written collection of symbols and reflective prompts. It isn’t an AI therapist, a prediction, or a universal decoder. Keep what connects; leave the rest.':
-    'Podemos ofrecerte un punto de partida. Soñé relaciona las palabras de tu sueño con una colección de símbolos y preguntas escritas para reflexionar. No es terapia, una predicción ni una clave universal. Quédate con lo que te sirva.',
+  'We can offer a starting point. Sone matches words in your dream to a small, hand-written collection of symbols and reflective prompts. It isn’t an AI therapist, a prediction, or a universal decoder. Keep what connects; leave the rest.':
+    'Podemos ofrecerte un punto de partida. Sone relaciona las palabras de tu sueño con una colección de símbolos y preguntas escritas para reflexionar. No es terapia, una predicción ni una clave universal. Quédate con lo que te sirva.',
   'Does my dream get saved anywhere?': '¿Mi sueño se guarda en algún lugar?',
   'No. Your text stays in this page’s temporary memory. We don’t send it to an interpretation service or save it in browser storage. Reloading clears it. If you want to keep a reading, use the copy option.':
     'No. Tu texto queda en la memoria temporal de esta página. No lo enviamos a un servicio de interpretación ni lo guardamos en el navegador. Se borra al recargar. Si quieres conservar una lectura, usa la opción de copiar.',
-  'Where does the folklore come from?': '¿De dónde viene el folclore?',
+  'Where do the interpretations come from?': '¿De dónde vienen las interpretaciones?',
   'The old stories are editorial summaries of common folk motifs and family sayings, which vary across families and places. They aren’t a complete account of Mexican tradition or scientific evidence. Each symbol separates the old story from the reflective reading.':
     'Las historias son resúmenes editoriales de motivos populares y dichos que varían según la familia y el lugar. No representan toda la tradición mexicana ni son evidencia científica. Cada ficha separa la historia popular de la reflexión.',
   '← Back to your dream': '← Volver a tu sueño',
@@ -92,7 +107,7 @@ export const es: Record<string, string> = {
   'The cast of your dream.': 'Los personajes de tu sueño.',
   'A little off the map.': 'Un poco fuera del mapa.',
   'And that’s okay.': 'Y está bien así.',
-  'We haven’t got a card for every strange thing the mind can do. You can add a concrete detail—like a person, place, or animal—or work with the question below.':
+  'We haven’t got a card for every strange thing the mind can do. You can add a concrete detail (like a person, place, or animal) or work with the question below.':
     'No tenemos una ficha para cada cosa extraña que imagina la mente. Puedes añadir un detalle concreto, como una persona, un lugar o un animal, o empezar por la pregunta de abajo.',
   'Add a detail ↗': 'Añadir un detalle ↗',
   'A QUESTION TO TAKE WITH YOU': 'UNA PREGUNTA PARA LLEVARTE',
@@ -132,7 +147,7 @@ export const es: Record<string, string> = {
   'A little room for your dreams.': 'Un espacio para tus sueños.',
   'FREE TO WANDER. NOTHING TO SIGN UP FOR.': 'EXPLORA LIBREMENTE. SIN REGISTRO.',
   'For reflection, with an open mind.': 'Para reflexionar con la mente abierta.',
-  'About Soñé ↗': 'Sobre Soñé ↗',
+  'About Sone ↗': 'Sobre Sone ↗',
   'Close symbol': 'Cerrar ficha',
   'A SMALL PIECE OF THE NIGHT ·': 'UN PEDACITO DE LA NOCHE ·',
   'Symbol perspectives': 'Perspectivas del símbolo',
@@ -141,8 +156,8 @@ export const es: Record<string, string> = {
   'AN ASSOCIATION, NOT AN ANSWER': 'UNA ASOCIACIÓN, NO UNA RESPUESTA',
   'SOMETHING TO WONDER ABOUT': 'ALGO PARA PENSAR',
   'Where this reading comes from': 'De dónde viene esta lectura',
-  'The reflective reading and questions are written for Soñé. The old story summarizes folk motifs that differ between families and regions; it isn’t a verified historical attribution or scientific claim. Your own context matters most.':
-    'La lectura y las preguntas están escritas para Soñé. La historia resume motivos que varían entre familias y regiones; no es una atribución histórica verificada ni una afirmación científica. Tu contexto es lo más importante.',
+  'The reflective reading and questions are written for Sone. The old story summarizes folk motifs that differ between families and regions; it isn’t a verified historical attribution or scientific claim. Your own context matters most.':
+    'La lectura y las preguntas están escritas para Sone. La historia resume motivos que varían entre familias y regiones; no es una atribución histórica verificada ni una afirmación científica. Tu contexto es lo más importante.',
   'Explore it in your dream': 'Explóralo en tu sueño',
   'Close sharing': 'Cerrar vista para compartir',
   'PASS A LITTLE WONDER AROUND': 'COMPARTE UN POCO DE CURIOSIDAD',

@@ -7,13 +7,14 @@ import ts from 'typescript';
 
 const dir = await mkdtemp(join(tmpdir(), 'sone-check-'));
 try {
-  for (const name of ['dictionary', 'symbols-es', 'translations']) {
+  for (const name of ['dictionary', 'symbols-es', 'translations', 'sources']) {
     const source = await readFile(new URL(`../src/${name}.ts`, import.meta.url), 'utf8');
     const output = ts
       .transpileModule(source, {
         compilerOptions: { module: ts.ModuleKind.ES2022, target: ts.ScriptTarget.ES2020 },
       })
-      .outputText.replaceAll("'./symbols-es'", "'./symbols-es.mjs'");
+      .outputText.replaceAll("'./sources'", "'./sources.mjs'")
+      .replaceAll("'./symbols-es'", "'./symbols-es.mjs'");
     await writeFile(join(dir, `${name}.mjs`), output);
   }
   const { dictionary, getDictionary, findSymbols, makeReading, dreamMood, shareReading } =
@@ -48,7 +49,18 @@ try {
   assert(shareReading(spanish, dream, true, 'es').includes('El sueño: ' + dream));
   assert.equal(makeReading('A purple hologram.', 'Curious').symbols.length, 0);
   assert.match(makeReading('A purple hologram.', 'Curious', 'es').summary, /no coincide/);
-  for (const entry of dictionary.filter((s) => s.source)) {
+  for (const entry of dictionary) {
+    assert(['dictionary', 'editorial'].includes(entry.source.kind));
+    assert(entry.source.association.en && entry.source.association.es);
+    assert.equal(entry.source.kind === 'dictionary', !!entry.source.url);
+    assert.equal(entry.folklore, entry.source.association.en);
+    assert.equal(
+      getDictionary('es').find((s) => s.id === entry.id).folklore,
+      entry.source.association.es,
+    );
+  }
+  assert(shareReading(spanish, dream, false, 'es').includes('#about-dreams'));
+  for (const entry of dictionary.filter((s) => s.source.url)) {
     assert.equal(new URL(entry.source.url).protocol, 'https:');
   }
   assert.equal(es['Copy reading'], 'Copiar lectura');

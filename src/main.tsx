@@ -16,8 +16,10 @@ import {
 } from './dictionary';
 import { LanguageProvider, useI18n } from './i18n';
 import './style.css';
+import { Provenance } from './Provenance';
+import { AboutDreams } from './AboutDreams';
 
-type Page = 'home' | 'interpret' | 'dictionary';
+type Page = 'home' | 'interpret' | 'dictionary' | 'about-dreams';
 const examples = [
   {
     name: 'I was flying',
@@ -607,6 +609,11 @@ function SymbolCard({
       <div className="symbol-label">
         <h3>{symbol.name}</h3>
         <p>{symbol.subtitle}</p>
+        <span className="card-source">
+          {symbol.source.kind === 'dictionary'
+            ? `${t('Source')}: ${symbol.source.title}`
+            : t('Original Sone reflection')}
+        </span>
       </div>
     </motion.button>
   );
@@ -615,11 +622,13 @@ function App() {
   const { lang, setLang, t } = useI18n();
   const reduced = useReducedMotion();
   const getPage = (): Page =>
-    window.location.hash === '#dictionary'
-      ? 'dictionary'
-      : window.location.hash === '#interpret'
-        ? 'interpret'
-        : 'home';
+    window.location.hash === '#about-dreams'
+      ? 'about-dreams'
+      : window.location.hash === '#dictionary'
+        ? 'dictionary'
+        : window.location.hash === '#interpret'
+          ? 'interpret'
+          : 'home';
   const [page, setPage] = useState<Page>(getPage);
   const [dream, setDream] = useState('');
   const [result, setResult] = useState('');
@@ -648,6 +657,7 @@ function App() {
   useEffect(() => {
     const change = () => {
       if (window.location.hash === '#main') return;
+      setSelected(null);
       setPage(getPage());
       window.scrollTo(0, 0);
     };
@@ -739,18 +749,6 @@ function App() {
         .getElementById('the-idea')
         ?.scrollIntoView({ behavior: reduced ? 'instant' : 'smooth' });
   }
-  function jumpToIdea(e: React.MouseEvent) {
-    e.preventDefault();
-    if (page === 'home') {
-      window.history.replaceState(null, '', '#about');
-      document
-        .getElementById('the-idea')
-        ?.scrollIntoView({ behavior: reduced ? 'instant' : 'smooth' });
-    } else {
-      go('home');
-      window.history.replaceState(null, '', '#about');
-    }
-  }
   const form = (
     <form
       className="dream-form"
@@ -829,9 +827,9 @@ function App() {
             e.preventDefault();
             go('home');
           }}
-          aria-label={t('Soñé home')}
+          aria-label={t('Sone home')}
         >
-          soñé
+          sone
           <svg viewBox="0 0 40 20" aria-hidden="true">
             <path
               d="M2 10Q20-6 38 10Q20 26 2 10Z"
@@ -853,8 +851,8 @@ function App() {
           >
             {t('Dream symbols')}
           </a>
-          <a href="#about" onClick={jumpToIdea}>
-            {t('The idea')}
+          <a href="#about-dreams" aria-current={page === 'about-dreams' ? 'page' : undefined}>
+            {t('About dreams')}
           </a>
         </nav>
         <div
@@ -1017,7 +1015,7 @@ function App() {
                       </h2>
                       <p>
                         {t(
-                          'Soñé means “I dreamed.” It started with the way dreams get talked about around a kitchen table: a strange detail, an old family story, a different point of view.',
+                          'Sone takes its name from the Spanish soñé, “I dreamed.” It started with the way dreams get talked about around a kitchen table: a strange detail, an old family story, a different point of view.',
                         )}
                       </p>
                       <p>
@@ -1095,7 +1093,7 @@ function App() {
                       </summary>
                       <p>
                         {t(
-                          'We can offer a starting point. Soñé matches words in your dream to a small, hand-written collection of symbols and reflective prompts. It isn’t an AI therapist, a prediction, or a universal decoder. Keep what connects; leave the rest.',
+                          'We can offer a starting point. Sone matches words in your dream to a small, hand-written collection of symbols and reflective prompts. It isn’t an AI therapist, a prediction, or a universal decoder. Keep what connects; leave the rest.',
                         )}
                       </p>
                     </details>
@@ -1112,12 +1110,12 @@ function App() {
                     </details>
                     <details>
                       <summary>
-                        {t('Where does the folklore come from?')}
+                        {t('Where do the interpretations come from?')}
                         <span>+</span>
                       </summary>
                       <p>
                         {t(
-                          'The old stories are editorial summaries of common folk motifs and family sayings, which vary across families and places. They aren’t a complete account of Mexican tradition or scientific evidence. Each symbol separates the old story from the reflective reading.',
+                          'Each symbol names the dictionary entry behind its symbolic association, or labels it as an original Sone metaphor. Reflections and questions are our own writing. The About dreams page separates these interpretations from sleep research.',
                         )}
                       </p>
                     </details>
@@ -1158,7 +1156,7 @@ function App() {
                         <span>↗</span>
                       </button>
                       <div className="ticket-bottom">
-                        <span>SOÑÉ</span>
+                        <span>SONE</span>
                         <span>{t('ONE NIGHT. MANY POSSIBILITIES.')}</span>
                       </div>
                     </div>
@@ -1219,7 +1217,7 @@ function App() {
                         <Art kind="eye" />
                         <p>
                           {t(
-                            'We haven’t got a card for every strange thing the mind can do. You can add a concrete detail—like a person, place, or animal—or work with the question below.',
+                            'We haven’t got a card for every strange thing the mind can do. You can add a concrete detail (like a person, place, or animal) or work with the question below.',
                           )}
                         </p>
                         <button
@@ -1244,15 +1242,16 @@ function App() {
                     {reading.symbols.length > 0 && (
                       <details className="folklore-note">
                         <summary>
-                          <span>{t('An old story, for the curious.')}</span>
+                          <span>{t('Where these associations come from')}</span>
                           <span>+</span>
                         </summary>
                         <div>
-                          <p className="eyebrow">{t('FOLKLORE, NOT A FORECAST')}</p>
-                          {reading.symbols.slice(0, 3).map((s) => (
+                          <p className="eyebrow">{t('SYMBOLISM, NOT SCIENCE')}</p>
+                          {reading.symbols.map((s) => (
                             <section key={s.id}>
                               <h3>{s.name}</h3>
                               <p>{s.folklore}</p>
+                              <Provenance symbol={s} />
                             </section>
                           ))}
                         </div>
@@ -1277,6 +1276,7 @@ function App() {
                 </div>
               </section>
             )}
+            {page === 'about-dreams' && <AboutDreams />}
             {page === 'dictionary' && (
               <section className="dictionary-page page-width">
                 <div className="dictionary-intro">
@@ -1351,12 +1351,9 @@ function App() {
                     <h3>{t('A collection of possibilities.')}</h3>
                     <p>
                       {t(
-                        'These cards combine editorial reflection with folk motifs. They aren’t scientifically validated meanings, and the old stories vary across communities. For general background on dreams, visit the',
+                        'Each card names its source. Dictionary associations are symbolic interpretations; our reflections and questions are original writing. Neither is a scientifically validated meaning.',
                       )}{' '}
-                      <a href="https://dictionary.apa.org/dream" target="_blank" rel="noreferrer">
-                        {t('APA Dictionary ↗')}
-                      </a>
-                      {t('. It doesn’t validate our symbolic readings.')}
+                      <a href="#about-dreams">{t('Explore the research and our sources ↗')}</a>
                     </p>
                   </div>
                   <button className="text-link" onClick={start}>
@@ -1378,7 +1375,7 @@ function App() {
               go('home');
             }}
           >
-            soñé<span className="footer-spark">✳</span>
+            sone<span className="footer-spark">✳</span>
           </a>
           <p>{t('A little room for your dreams.')}</p>
           <span lang="es">dulces sueños.</span>
@@ -1386,9 +1383,7 @@ function App() {
         <div className="page-width footer-bottom">
           <span>{t('FREE TO WANDER. NOTHING TO SIGN UP FOR.')}</span>
           <p>{t('For reflection, with an open mind.')}</p>
-          <a href="#about" onClick={jumpToIdea}>
-            {t('About Soñé ↗')}
-          </a>
+          <a href="#about-dreams">{t('Sources & approach ↗')}</a>
         </div>
       </footer>
       {selected && (
@@ -1419,7 +1414,7 @@ function App() {
           </div>
           <div className="dialog-copy">
             <div className="dialog-tabs" role="tablist" aria-label={t('Symbol perspectives')}>
-              {[t('A fresh look'), t('An old story')].map((t, i) => (
+              {[t('A fresh look'), t('Symbolic context')].map((t, i) => (
                 <button
                   key={t}
                   id={`symbol-tab-${i}`}
@@ -1442,7 +1437,7 @@ function App() {
             </div>
             <div id="symbol-panel" role="tabpanel" aria-labelledby={`symbol-tab-${dialogTab}`}>
               <p className="eyebrow">
-                {dialogTab ? t('FOLKLORE, NOT A FORECAST') : t('AN ASSOCIATION, NOT AN ANSWER')}
+                {dialogTab ? t('SYMBOLISM, NOT SCIENCE') : t('ORIGINAL SONE REFLECTION')}
               </p>
               <p>{dialogTab ? selected.folklore : selected.reflection}</p>
             </div>
@@ -1450,24 +1445,7 @@ function App() {
               <span className="eyebrow">{t('SOMETHING TO WONDER ABOUT')}</span>
               <h3>{selected.question}</h3>
             </div>
-            <details>
-              <summary>{t('Where this reading comes from')}</summary>
-              <p>
-                {t(
-                  'The reflective reading and questions are written for Soñé. The old story summarizes folk motifs that differ between families and regions; it isn’t a verified historical attribution or scientific claim. Your own context matters most.',
-                )}
-              </p>
-              <p className="source-link">
-                {selected.source && (
-                  <>
-                    <a href={selected.source.url} target="_blank" rel="noreferrer">
-                      {t('Further reading')}: {selected.source.title} ↗
-                    </a>
-                    <span>{t('Related symbolic reference; not scientific validation.')}</span>
-                  </>
-                )}
-              </p>
-            </details>
+            <Provenance symbol={selected} />
             <button
               className="text-link"
               onClick={() => {
