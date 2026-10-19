@@ -4,6 +4,8 @@
 
 A free, bilingual place to explore the strange things you dream about. Describe what you remember, follow the symbols, and take a thought with you.
 
+**[Explore in English](https://sone-tau.vercel.app/?lang=en)** · **[Explorar en español](https://sone-tau.vercel.app/?lang=es)**
+
 Built by [Gil Silva](https://github.com/gilxsilva).
 
 ![Soñé: a warm, illustrated dream exploration website](docs/preview.png)
